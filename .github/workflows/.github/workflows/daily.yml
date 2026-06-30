@@ -1,0 +1,23 @@
+name: Daily Python Run
+
+on:
+  schedule:
+    # every morging 9:00 IST (03:30 UTC)
+    - cron: '30 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  run-python:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run Python Script
+        run: python main.py
